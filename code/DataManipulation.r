@@ -67,3 +67,18 @@ diamonds |> filter(cut %in% c('Ideal', 'Premium', 'Good'))
 
 diamonds |> filter(carat >= 1 & cut == 'Ideal')
 
+# Changing Data with mutate ####
+diamonds |> mutate(price/carat)
+
+diamonds <- diamonds |> select(-x, -y, -z)
+diamonds
+
+diamonds |> mutate(price/carat)
+diamonds
+
+diamonds |> mutate(price/carat)
+diamonds |> mutate(Ratio=price/carat)
+diamonds |> mutate(Ratio=price/carat) |> mutate(Double=Ratio*2)
+diamonds |> mutate(Ratio=price/carat, Double=Ratio*2)
+diamonds |> mutate(price=price*2)
+diamonds
