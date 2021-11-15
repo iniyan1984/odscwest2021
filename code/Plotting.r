@@ -115,3 +115,15 @@ ggplot(diamonds, aes(x=price, fill=cut)) +
 ggplot(diamonds, aes(x=price)) + 
     geom_histogram(aes(y=..density..), fill='grey50') + 
     geom_density()
+
+# Bar Plots ####
+
+ggplot(diamonds, aes(x=cut)) + 
+    geom_bar()
+
+library(dplyr)
+diamonds |> count(cut)
+
+ggplot(diamonds, aes(x=cut)) +
+    geom_bar(aes(fill=cut)) + 
+    geom_label(data=diamonds |> count(cut), aes(y=n, label=n))
