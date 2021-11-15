@@ -12,3 +12,15 @@ tomato
 # tibble
 
 class(tomato)
+
+# semicolon
+read_csv2()
+# tabs
+read_tsv()
+# fixed width
+read_fwf()
+# user specifies
+read_delim()
+
+# reading json
+# {jsonlite}
