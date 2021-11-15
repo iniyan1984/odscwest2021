@@ -82,3 +82,35 @@ diamonds |> mutate(Ratio=price/carat) |> mutate(Double=Ratio*2)
 diamonds |> mutate(Ratio=price/carat, Double=Ratio*2)
 diamonds |> mutate(price=price*2)
 diamonds
+tibble(Number=c(27938, 183122, 3545898, 65327197234))
+
+new_obj <- diamonds |> 
+    mutate(Ratio=carat/price) |> 
+    mutate(Double=Ratio*2)
+new_obj
+
+# Summarizing data ####
+
+diamonds |> summarize(mean(price))
+diamonds |> summarize(AvgPrice=mean(price))
+diamonds |> 
+    summarize(AvgPrice=mean(price), TotalPrice=sum(price), TotalSize=sum(carat))
+
+# compute the mean of price, for each cut of diamond separately
+diamonds |> group_by(cut)
+
+diamonds |> 
+    group_by(cut) |> 
+    summarize(AvgPrice=mean(price))
+
+# split-apply-combine
+# map reduce
+
+diamonds |> 
+    group_by(cut) |> 
+    summarize(AvgPrice=mean(price), TotalSize=sum(carat))
+
+diamonds |> 
+    group_by(cut, color) |> 
+    summarize(AvgPrice=mean(price), TotalSize=sum(carat))
+
