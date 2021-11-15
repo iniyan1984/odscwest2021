@@ -114,3 +114,32 @@ diamonds |>
     group_by(cut, color) |> 
     summarize(AvgPrice=mean(price), TotalSize=sum(carat))
 
+# Sorting data ####
+
+diamonds |> arrange(carat)
+diamonds |> arrange(desc(carat))
+diamonds |> arrange(-carat)
+
+
+# Putting it all together ####
+
+# for diamonds over one carat, 
+# compute the average price for each cut, 
+# sorted by avg price descending
+
+diamonds |> 
+    filter(carat > 1) |> 
+    group_by(cut) |> 
+    summarize(AvgPrice=mean(price)) |> 
+    arrange(-AvgPrice)
+
+arrange(
+    summarize(
+        group_by(
+            filter(
+                diamonds, 
+                carat > 1), 
+            cut), 
+        AvgPrice=mean(price)), 
+    -AvgPrice
+)
