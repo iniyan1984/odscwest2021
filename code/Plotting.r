@@ -50,3 +50,35 @@ ggplot(diamonds, aes(x=carat, y=price)) +
     geom_point(aes(color=cut), shape=1, size=1) + 
     geom_smooth(aes(color=cut), se=FALSE, linetype=2) + 
     geom_smooth(color='hotpink')
+
+# Faceting ####
+# aka small multiples, trellis
+
+ggplot(diamonds, aes(x=carat, y=price)) + 
+    geom_point(aes(color=cut), shape=1, size=1) + 
+    geom_smooth() + 
+    facet_wrap( ~ cut )
+# nyhack.org: Bill Cleveland, Ryan Hafen
+
+ggplot(diamonds, aes(x=carat, y=price)) + 
+    geom_point(aes(color=cut), shape=1, size=1, show.legend=FALSE) + 
+    geom_smooth(aes(color=cut), show.legend=FALSE) + 
+    facet_wrap( ~ cut )
+
+ggplot(diamonds, aes(x=carat, y=price)) + 
+    geom_point(aes(color=cut), shape=1, size=1) + 
+    geom_smooth(aes(color=cut)) + 
+    facet_wrap( ~ cut ) + 
+    theme(legend.position='bottom')
+
+
+
+ggplot(diamonds, aes(x=carat, y=price)) + 
+    geom_point(aes(color=cut), shape=1, size=1, show.legend=FALSE) + 
+    geom_smooth(aes(color=cut), show.legend=FALSE) + 
+    facet_wrap( ~ cut , nrow=1)
+
+ggplot(diamonds, aes(x=carat, y=price)) + 
+    geom_point(aes(color=cut), shape=1, size=1, show.legend=FALSE) + 
+    geom_smooth(aes(color=cut), show.legend=FALSE) + 
+    facet_wrap( ~ cut , ncol=1)
