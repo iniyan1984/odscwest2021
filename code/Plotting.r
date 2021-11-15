@@ -127,3 +127,8 @@ diamonds |> count(cut)
 ggplot(diamonds, aes(x=cut)) +
     geom_bar(aes(fill=cut)) + 
     geom_label(data=diamonds |> count(cut), aes(y=n, label=n))
+
+ggsave(ggplot(diamonds, aes(x=cut)) +
+           geom_bar(aes(fill=cut)) + 
+           geom_label(data=diamonds |> count(cut), aes(y=n, label=n)),
+        filename='myplot.png')
