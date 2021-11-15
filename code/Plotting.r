@@ -82,3 +82,36 @@ ggplot(diamonds, aes(x=carat, y=price)) +
     geom_point(aes(color=cut), shape=1, size=1, show.legend=FALSE) + 
     geom_smooth(aes(color=cut), show.legend=FALSE) + 
     facet_wrap( ~ cut , ncol=1)
+
+# Histograms ####
+
+ggplot(diamonds, aes(x=price)) + geom_histogram()
+ggplot(diamonds, aes(x=price)) + geom_histogram(bins=10)
+ggplot(diamonds, aes(x=price)) + geom_histogram(bins=50)
+ggplot(diamonds, aes(x=price)) + geom_histogram(bins=100)
+ggplot(diamonds, aes(x=price)) + geom_histogram(bins=200)
+
+library(patchwork)
+ggplot(diamonds, aes(x=price)) + geom_histogram(bins=10) + 
+ggplot(diamonds, aes(x=price)) + geom_histogram(bins=50) + 
+ggplot(diamonds, aes(x=price)) + geom_histogram(bins=100) +
+ggplot(diamonds, aes(x=price)) + geom_histogram(bins=200)
+
+ggplot(diamonds, aes(x=price, color=cut)) + geom_histogram(bins=30)
+ggplot(diamonds, aes(x=price, fill=cut)) + geom_histogram(bins=30)
+ggplot(diamonds, aes(x=price, fill=cut)) + 
+    geom_histogram(bins=30, position='dodge')
+
+ggplot(diamonds, aes(x=price, fill=cut)) + 
+    geom_histogram(bins=30) + 
+    facet_wrap(~cut)
+
+ggplot(diamonds, aes(x=price, color=cut)) + 
+    geom_density()
+
+ggplot(diamonds, aes(x=price, fill=cut)) + 
+    geom_density(alpha=1/4)
+
+ggplot(diamonds, aes(x=price)) + 
+    geom_histogram(aes(y=..density..), fill='grey50') + 
+    geom_density()
